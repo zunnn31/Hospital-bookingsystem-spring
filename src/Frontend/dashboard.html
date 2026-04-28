@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedCare – Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">🏥 MedCare Hospital</div>
+    <div class="nav-links">
+      <button onclick="showSection('doctors')">Doctors</button>
+      <button onclick="showSection('appointments')">My Appointments</button>
+      <button onclick="showSection('profile')">Profile</button>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DOCTORS SECTION -->
+    <section id="section-doctors" class="section active">
+      <div class="section-header">
+        <h2>Our Doctors</h2>
+        <input type="text" id="search-doctor" placeholder="🔍 Search by name or specialty..." oninput="filterDoctors()"/>
+      </div>
+      <div id="doctors-grid" class="doctors-grid"></div>
+    </section>
+
+    <!-- APPOINTMENTS SECTION -->
+    <section id="section-appointments" class="section">
+      <div class="section-header">
+        <h2>My Appointments</h2>
+      </div>
+      <div id="appointments-list" class="appointments-list"></div>
+    </section>
+
+    <!-- PROFILE SECTION -->
+    <section id="section-profile" class="section">
+      <div class="profile-card">
+        <div class="profile-avatar">👤</div>
+        <div id="profile-info"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOOK MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Book Appointment</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <p id="modal-doctor-name" class="modal-doctor"></p>
+
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="appt-date"/>
+      </div>
+      <div class="form-group">
+        <label>Time Slot</label>
+        <select id="appt-slot">
+          <option>09:00 AM</option>
+          <option>10:00 AM</option>
+          <option>11:00 AM</option>
+          <option>02:00 PM</option>
+          <option>03:00 PM</option>
+          <option>04:00 PM</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="appt-type">
+          <option>General</option>
+          <option>Emergency</option>
+          <option>Follow-up</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Symptoms / Notes</label>
+        <textarea id="appt-symptoms" rows="3" placeholder="Describe your symptoms..."></textarea>
+      </div>
+
+      <div id="modal-error" class="error-msg hidden"></div>
+      <button class="btn-primary" onclick="bookAppointment()">Confirm Booking</button>
+    </div>
+  </div>
+  <div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal()"></div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
