@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+
 @Service
 public class AppointmentService {
 
@@ -21,7 +22,7 @@ public class AppointmentService {
 
     public Appointment getById(Long id) {
         return appointmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy lịch!"));
+                .orElseThrow(() -> new RuntimeException("Appointment not found!"));
     }
 
     public Appointment update(Long id, Appointment updated) {
